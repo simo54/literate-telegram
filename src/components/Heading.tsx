@@ -53,3 +53,20 @@ export function TextWithNumber({
     </div>
   );
 }
+
+// List (Generics)
+export function List<ListItem>({
+  items,
+  render,
+}: {
+  items: ListItem[];
+  render: (item: ListItem) => ReactNode;
+}) {
+  return (
+    <ul>
+      {items.map((item, index) => (
+        <li key={index}>{render(item)}</li>
+      ))}
+    </ul>
+  );
+}

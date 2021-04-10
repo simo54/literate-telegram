@@ -4,6 +4,7 @@ import {
   HeadingWithContent,
   Container,
   TextWithNumber,
+  List,
 } from "./components/Heading";
 import "./App.css";
 
@@ -18,6 +19,10 @@ function App() {
       <TextWithNumber header={(num: number) => <span>Header {num}</span>}>
         {(num: number) => <div>Today is {num}</div>}
       </TextWithNumber>
+      <List
+        items={["Test01", "another hey", "tested"]}
+        render={(item: string) => <div>{item.toLowerCase()}</div>}
+      ></List>
     </div>
   );
 }
