@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode, useState } from "react";
 
 // Conventional props
 export function Heading({ title }: { title: string }) {
@@ -18,12 +18,11 @@ const defaultContainerProps = {
   heading: <strong>My Heading with strong tag</strong>,
 };
 
-export function Container({
-  heading,
-  children,
-}: {
+type ContainerProps = {
   children: ReactNode;
-} & typeof defaultContainerProps): ReactElement {
+} & typeof defaultContainerProps;
+
+export function Container({ heading, children }: ContainerProps): ReactElement {
   return (
     <div>
       <h3>{heading}</h3>
@@ -33,3 +32,24 @@ export function Container({
 }
 
 Container.defaultProps = defaultContainerProps;
+
+// Functional Props
+export function TextWithNumber({
+  header,
+  children,
+}: {
+  header?: (num: number) => ReactNode;
+  children: (num: number) => ReactNode;
+}) {
+  const [state, stateSet] = useState<number>(1);
+
+  return (
+    <div>
+      {header && <h2>{header?.(state)}</h2>}
+      <div>{children(state)}</div>
+      <div>
+        <button onClick={() => stateSet(state + 1)}>Add</button>
+      </div>
+    </div>
+  );
+}
