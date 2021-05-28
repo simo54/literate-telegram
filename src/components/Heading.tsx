@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode, useState } from "react";
+import React, { ReactElement, ReactNode, useState } from "react";
 
 // Conventional props
 export function Heading({ title }: { title: string }) {
@@ -69,4 +69,13 @@ export function List<ListItem>({
       ))}
     </ul>
   );
+}
+
+// Class component
+export class MyHeading extends React.Component<{
+  title: ReactNode;
+}> {
+  render() {
+    return <h1>{this.props.title}</h1>;
+  }
 }
